@@ -8,7 +8,20 @@
 </head>
 <body>
 	<div id="app">
-
+		<ma-data v-model="tasks" src="local:tasks"/>
+		<h1> {{count(get(tasks,"done"))}} completed out of {{tasks.length}} Tasks! </h1>
+		<ul>
+			<!-- v-for goes inside the tag containing what you want to repeat -->
+			<!-- for and in are used interchangeably -->
+			<!-- tasks is a data name in inex.js -->
+			<li v-for="(task, i) in tasks"> 
+				<input type="checkbox" v-model="task.done"> 
+				<input v-model="task.title"> 
+				<button @click="deleteItem(i)">x</button>
+			</li>
+		</ul>
+		<button @click="addItem()">Add Item</button>
+		<button @click="clearCompleted()">Clear completed</button>
 	</div>
 </body>
 </html>
